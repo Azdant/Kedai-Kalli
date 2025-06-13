@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kedai Kalli - Pemesanan</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header>
+    <div class="logo-bar">
+      <div class="logo">K</div>
+      <div class="brand">KEDAI KALLI</div>
+    </div>
+  </header>
+
+  <div class="banner">
+    <img src="images/banner-discount.png" alt="Diskon 20%" />
+  </div>
+
+  <nav class="nav-tabs">
+    <button onclick="tampilkanKategori('paket')">Paket</button>
+    <button onclick="tampilkanKategori('makanan')">Makanan</button>
+    <button onclick="tampilkanKategori('minuman')">Minuman</button>
+    <button onclick="tampilkanKategori('tambahan')">Tambahan</button>
+  </nav>
+
+  <main class="section">
+    <h2 id="judul-kategori">PAKET</h2>
+    <div id="daftar-menu" class="menu-grid"></div>
+  </main>
+
+  <footer class="keranjang-bar">
+    <div class="keranjang-info">
+      <span class="icon">🛒</span>
+      <span id="keranjang-total">Total : Rp. 0</span>
+    </div>
+    <button onclick="lanjutkanKeRingkasan()">&gt;</button>
+  </footer>
+
+  <div id="halaman-form" class="section hidden">
+    <!-- Tidak digunakan lagi -->
+  </div>
+
+  <div id="halaman-ringkasan" class="section hidden">
+    <h2>Ringkasan Pesanan</h2>
+
+    <!-- Tambahan untuk menampilkan isi keranjang lengkap -->
+    <div id="isi-keranjang"></div>
+
+    <div id="ringkasan-pesanan"></div>
+    <label>Catatan:</label>
+    <textarea id="catatan"></textarea>
+    <h3 id="total-harga"></h3>
+    <button onclick="tampilkanQRCode()">Tampilkan QR Transaksi</button>
+  </div>
+
+  <div id="halaman-qr" class="section hidden">
+    <h2>QR Pembayaran</h2>
+    <p>Tunjukkan QR ini ke kasir untuk menyelesaikan pembayaran.</p>
+    <div id="qrcode" style="text-align:center; margin-bottom: 20px;"></div>
+    <div style="display: flex; justify-content: center; gap: 10px;">
+      <button onclick="kembaliKeHome()">Kembali ke Home</button>
+      <button onclick="document.getElementById('modal-struk').classList.remove('hidden')">Minta Struk WA</button>
+    </div>
+  </div>
+
+  <div id="modal-pilihan" class="modal hidden">
+    <div class="modal-content" id="konten-modal"></div>
+  </div>
+
+  <div id="modal-struk" class="modal hidden">
+    <div class="modal-content">
+      <h3>Masukkan Nama & Nomor WA</h3>
+      <input type="text" id="nama-wa" placeholder="Nama Anda" required />
+      <input type="tel" id="wa-wa" placeholder="08xxxxxxxxxx (opsional)" />
+      <button onclick="kirimStrukViaWA()">Kirim Struk</button>
+    </div>
+  </div>
+</body>
+</html>
